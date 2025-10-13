@@ -10,6 +10,8 @@ Images are open source and downloaded from: https://pixabay.com/
 
 """
 
+import os
+
 import dlib
 import matplotlib.pyplot as plt
 from emotions_dlib import EmotionsDlib, plot_landmarks
@@ -20,11 +22,11 @@ plt.close('all')
 
 
 # uncomment and select various example images
-image = imageio.imread('../data/images/excited.jpg')
+# image = imageio.imread('../data/images/excited.jpg')
 # image = imageio.imread('../data/images/happy.jpg')
 # image = imageio.imread('../data/images/pleased.jpg')
 # image = imageio.imread('../data/images/sad.jpg')
-# image = imageio.imread('../data/images/angry.jpg')
+image = imageio.imread('../data/images/angry.jpg')
 
 
 # setup detectors and models
@@ -100,5 +102,11 @@ for i, face in enumerate(faces):  # go through detected faces
             horizontalalignment="right",
             color="black"
             )
-        
+        save_dir = os.environ.get("EMOTION_PLOT_DIR")
+        if save_dir:
+            os.makedirs(save_dir, exist_ok=True)
+            file_path = os.path.join(save_dir, 'emotion_face_' + str(i+1) + '.png')
+            fig.savefig(file_path, bbox_inches="tight")
+            print('Saved plot:', file_path)
+
         plt.show()

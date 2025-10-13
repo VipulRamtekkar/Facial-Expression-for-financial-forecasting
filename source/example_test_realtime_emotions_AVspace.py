@@ -10,6 +10,7 @@ analyses your face in real-time. DLIB landmarks are not very illumination
 invariant, so this works better when there are no shadows on the face.
 """
 
+import os
 
 import numpy as np
 import cv2
@@ -24,7 +25,7 @@ GRAPH_LENGTH = 30  # frames
 EXP_AVG = 0.7  # 70% the new value 30% the old value
 
 
-cap = cv2.VideoCapture(0)  # camera object
+cap = cv2.VideoCapture("/home/vipul/capstone/facial-expression-analysis/data/video/ywyBkewwcP0.mp4")  # camera object
 detector = dlib.get_frontal_face_detector() 
 predictor = dlib.shape_predictor("../models/shape_predictor_68_face_landmarks.dat")
 
@@ -40,8 +41,8 @@ fig = plt.figure(figsize=(15,10))
 grid = plt.GridSpec(5, 6)
 plt.suptitle('(press q to quit) \n        ')
 
-plt.subplot(grid[:2,:2])
-plt.title('Original landmarks')
+ax_frame = plt.subplot(grid[:2,:2])
+plt.title('Frame + landmarks')
 
 plt.subplot(grid[:2,2:4])
 plt.title('Frontalized landmarks')
@@ -106,6 +107,10 @@ ls_valence = []
 ls_intensity = []
 
 ls_captures = []
+
+save_dir = os.environ.get("AVSPACE_SAVE_DIR")
+if save_dir:
+    os.makedirs(save_dir, exist_ok=True)
 
 disp_arousal = 0
 disp_valence = 0
@@ -179,10 +184,12 @@ if __name__=="__main__":
                 
                 # original landmarks
                 axes[0].clear()
+                rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                axes[0].imshow(rgb_frame)
                 plot_landmarks(
                     landmarks, 
                     axis=axes[0], 
-                    title='Original'
+                    title='Frame + landmarks'
                     )
                 
                 # frontalized landmarks
@@ -261,6 +268,8 @@ if __name__=="__main__":
                     )
                 
                 plt.pause(0.001)  # needed for updating the graph
+                if save_dir:
+                    fig.savefig(os.path.join(save_dir, 'frame_{:04d}.png'.format(f)))
                 plt.show()               
                 
             f += 1
