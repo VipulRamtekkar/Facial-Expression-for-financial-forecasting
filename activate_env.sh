@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # Activates the locally built Python virtual environment for the project.
 
-set -euo pipefail
-
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VENV_DIR="$REPO_DIR/.venv_env_emos"
 
