@@ -1,0 +1,11 @@
+# Core scientific stack pinned for Python 3.6 compatibility
+numpy==1.19.5
+scipy==1.5.4
+scikit-learn==0.23.1
+pandas==1.1.5
+matplotlib==3.3.4
+imageio==2.9.0
+joblib==1.0.1
+dlib==19.22.1
+opencv-python==4.5.5.64
+seaborn==0.11.2
