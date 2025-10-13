@@ -1,0 +1,8 @@
+Train window: [2025-10-08 00:00:00-04:00, 2025-10-09 00:00:00-04:00)
+Test window:  [2025-10-09 00:00:00-04:00, 2025-10-10 00:00:00-04:00]
+MSE_AR1: 4.231248e-06
+MAE_AR1: 1.266768e-03
+MSE_ARX: 4.231248e-06
+MAE_ARX: 1.266768e-03
+MSE improvement (ARX over AR1): 0.00%
+Used statsmodels: True
