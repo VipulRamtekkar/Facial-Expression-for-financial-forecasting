@@ -52,7 +52,8 @@ if [ ! -x "$PYTHON_BIN" ]; then
 
     echo "==> Building CPython (this may take a while)"
     pushd "$BUILD_DIR/Python-${PYTHON_VERSION}" >/dev/null
-    ./configure --prefix="$PYTHON_PREFIX" --enable-optimizations --with-ensurepip=install
+    # Skip --enable-optimizations to avoid the lengthy PGO test suite during build
+    ./configure --prefix="$PYTHON_PREFIX" --with-ensurepip=install
     make -j"$(nproc)"
     make install
     popd >/dev/null
@@ -86,4 +87,3 @@ Environment ready!
 - Python binary:  $PY_BIN
 - Virtual env:    $VENV_DIR
 EOF
-
