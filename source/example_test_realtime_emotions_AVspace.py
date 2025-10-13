@@ -20,12 +20,13 @@ from emotions_dlib import EmotionsDlib, plot_landmarks
 
 
 plt.close('all')
+plt.ion()  # enable interactive mode for real-time updates
 plt.style.use('seaborn')
 GRAPH_LENGTH = 30  # frames
 EXP_AVG = 0.7  # 70% the new value 30% the old value
 
 
-cap = cv2.VideoCapture("/home/vipul/capstone/facial-expression-analysis/data/video/ywyBkewwcP0.mp4")  # camera object
+cap = cv2.VideoCapture(0)  # camera object
 detector = dlib.get_frontal_face_detector() 
 predictor = dlib.shape_predictor("../models/shape_predictor_68_face_landmarks.dat")
 
@@ -85,7 +86,7 @@ plt.xlim((0, GRAPH_LENGTH-1))
 plt.grid(True)
 
 plt.tight_layout()
-plt.show()
+plt.show(block=False)
 axes = fig.get_axes()
 
 
@@ -108,7 +109,7 @@ ls_intensity = []
 
 ls_captures = []
 
-save_dir = os.environ.get("AVSPACE_SAVE_DIR")
+save_dir = "./webcam"
 if save_dir:
     os.makedirs(save_dir, exist_ok=True)
 
@@ -189,7 +190,8 @@ if __name__=="__main__":
                 plot_landmarks(
                     landmarks, 
                     axis=axes[0], 
-                    title='Frame + landmarks'
+                    title='Frame + landmarks',
+                    invert_yaxis=False
                     )
                 
                 # frontalized landmarks
@@ -267,10 +269,10 @@ if __name__=="__main__":
                     color=(0.2,0.8,0.2)
                     )
                 
+                fig.canvas.draw_idle()
                 plt.pause(0.001)  # needed for updating the graph
                 if save_dir:
                     fig.savefig(os.path.join(save_dir, 'frame_{:04d}.png'.format(f)))
-                plt.show()               
                 
             f += 1
     

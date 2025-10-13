@@ -623,7 +623,7 @@ class LandmarkFrontalizationDlib():
 
 
 
-def plot_landmarks(landmarks, axis=None, color='k', title=None):
+def plot_landmarks(landmarks, axis=None, color='k', title=None, invert_yaxis=True):
     '''
     ---------------------------------------------------------------------------
                       Creates a line drawing of a face shape
@@ -644,6 +644,9 @@ def plot_landmarks(landmarks, axis=None, color='k', title=None):
         matplotlib color scheme.
     title: string
         Title of the face line drawing. If None, no title is included.
+    invert_yaxis: bool
+        If True, flip the y-axis so larger values appear lower
+        (useful when plotting in DLIB's image coordinate space).
     
     OUTPUT
     ------
@@ -658,7 +661,8 @@ def plot_landmarks(landmarks, axis=None, color='k', title=None):
         ax = axis
     
     # format shape
-    ax.invert_yaxis()
+    if invert_yaxis:
+        ax.invert_yaxis()
     ax.axis('off')
     ax.set_aspect(aspect=1)
     if title is not None: ax.set_title(title)
