@@ -1,0 +1,6 @@
+event_id,ticker,call_date,p_arima,p_arimax,direction,d_arima,d_arimax
+evt1,TEST,2025-10-05,,,1,0,0
+evt2,TEST,2025-10-06,,,0,0,0
+evt3,TEST,2025-10-07,,,1,0,0
+evt4,TEST,2025-10-08,,,0,0,0
+evt5,TEST,2025-10-09,,,1,0,0

@@ -1,0 +1,12 @@
+=== Event-level (next-day direction) ===
+CTRL only     -> MDA: nan | AUC: nan | Brier: nan
+CTRL + FACE   -> MDA: nan | AUC: nan | Brier: nan
+ΔMDA (CF-CTRL): +nan
+McNemar p (dir, CTRL vs CTRL+FACE): None
+
+=== Local Projections (coeffs/p-values for faces; OOS dir acc) ===
+Insufficient data for LP.
+
+=== ARIMA vs ARIMAX (impulses) ===
+ARIMA  -> MDA: nan | AUC: nan | Brier: nan
+ARIMAX -> MDA: nan | AUC: nan | Brier: nan
