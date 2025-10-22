@@ -1,0 +1,10 @@
+python-dotenv
+requests
+pandas
+numpy
+opencv-python
+ffmpeg-python
+scikit-learn
+pyyaml
+yfinance
+streamlit
