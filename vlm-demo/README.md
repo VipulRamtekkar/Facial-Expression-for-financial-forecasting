@@ -9,7 +9,12 @@ Quick demo pipeline that samples sparse frames from a CEO interview, scores them
    ```bash
    pip install -r requirements.txt
    ```
-3. Copy `.env.example` to `.env` and populate it with your OpenRouter API key and preferred vision model.
+3. Create a `.env` file and populate it with your OpenRouter API key and preferred vision model. Minimum:
+   ```
+   OPENROUTER_API_KEY="ENTER OPENROUTER KEY HERE"
+   # optional override (defaults to meta-llama/llama-3.2-11b-vision-instruct)
+   VLM_MODEL_ID=openai/gpt-5-mini
+   ```
 4. Add input assets:
    - Place the interview video under `data/videos/`.
    - Put the matching minute bars CSV under `data/prices/` with columns `timestamp,open,high,low,close,volume`.
@@ -55,7 +60,7 @@ If price labels are unavailable or a class imbalance prevents model fitting, the
   streamlit run src/app.py
   ```
   The app guides you through the full pipeline, visualizes frame-level VLM scores, plots aggregated features, surfaces derived price signals, and lists per-horizon directional predictions.
-- Prefer a notebook walkthrough? Open `notebooks/vlm_frame_walkthrough.ipynb` for a step-by-step inspection of frames, VLM outputs, aggregated features, and resulting labels.
+- Prefer a notebook walkthrough? Open `src/vlm_frame_walkthrough.ipynb` for a step-by-step inspection of frames, VLM outputs, aggregated features, and resulting labels.
 
 ## Pulling price data from video metadata
 
