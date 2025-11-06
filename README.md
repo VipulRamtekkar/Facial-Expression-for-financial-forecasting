@@ -5,10 +5,28 @@ This project explores whether CEO facial expressions during earnings calls and i
 - A classical, DLIB‑based emotion estimator that extracts arousal, valence, and intensity from facial landmarks.
 - A Vision‑Language Model (VLM) demo that scores sparse video frames with a modern VLM, aggregates affect features, and pairs them with price data for directional predictions.
 
-![Emotion sample](plots/emotion_face_1.png "Emotion estimation on a sample face")
+Results: 
+
+DLIB-based emotion estimator:
+
+![Emotion sample](results/DA_1.png "Emotion estimation on a CEO face")
+![Emotion sample](results/DA_2.png "Emotion estimation on a CEO face")
+![Emotion sample](results/DA_3.png "Emotion estimation on a CEO face")
+
+----------------------------------------------------------------------
+VLM based emotion estimator
 
 ![VLM frame sample](vlm-demo/data/frames/frame_00002.png "One of the sampled frames used by the VLM demo")
 
+Model used: openai/gpt-5-mini
+
+VLM output: 
+
+Valence: -0.2 
+arousal: 0.25 
+intensity: 0.25 
+confidence: 0.45 
+Notes: Neutral-to-serious expression; slight mouth tension and mild brow furrow suggest mildly negative affect. Single-frame estimate. 
 
 **Authors**
 - Vipul Vijay Ramtekkar — vipul.ramtekkar16@gmail.com
